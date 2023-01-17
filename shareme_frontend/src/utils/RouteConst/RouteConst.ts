@@ -1,4 +1,4 @@
 export default {
     LOGIN:'/login',
-    DEFAULT:'*'
+    DEFAULT:'/*'
 }

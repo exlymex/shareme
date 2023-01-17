@@ -4,7 +4,7 @@ import {Routes,useNavigate,Route} from "react-router-dom";
 import RouteConst from './utils/RouteConst/RouteConst'
 import Login from "./components/Login";
 import Home from "./container/Home";
-function App() {
+const App: React.FC = () => {
   return (
     <Routes>
         <Route path={RouteConst.LOGIN} element={<Login/>}></Route>

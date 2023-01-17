@@ -14,10 +14,11 @@ export interface IDecoded {
 
 const Login = () => {
     const navigate = useNavigate()
-    const responseGoogle = (response: any) => {
-        localStorage.setItem('user',JSON.stringify(response.profileObj))
+    const responseGoogle = (response:any) => {
         const decoded:IDecoded = jwtDecode(response.credential)
         const {sub,name,picture} = decoded
+        localStorage.setItem('user',JSON.stringify(sub))
+
         const userData = {
             _id:sub,
             _type:'user',
@@ -27,10 +28,8 @@ const Login = () => {
         client.createIfNotExists(userData)
             .then(() => {
                 navigate('/',{replace:true})
-                console.log(1)
             })
     }
-    // @ts-ignore
     return (
         <div className="flex justify-start items-center flex-col h-screen">
             <div className="relative w-full h-full">
@@ -51,7 +50,6 @@ const Login = () => {
                         <GoogleLogin
                             onSuccess={responseGoogle}
                             // onError={responseGoogle}
-                            // state_cookie_domain="single_host_origin"
                         />
                     </div>
                 </div>
